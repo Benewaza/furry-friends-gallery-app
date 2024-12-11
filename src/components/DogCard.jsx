@@ -1,5 +1,3 @@
-import React from "react";
-
 const DogCard = ({ dog }) => {
   const dogBreed = (dog) => {
     // manipulate url string to retrieve breed information
