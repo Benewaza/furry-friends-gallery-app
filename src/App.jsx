@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 const App = () => {
   const [numberOfDogs, setNumberOfDogs] = useState(8);
+  const [dogsFoundTotal, setDogsFoundTotal] = useState(8);
   const [dogsList, setDogsList] = useState([]);
   const [error, setError] = useState(null);
 
@@ -26,14 +27,19 @@ const App = () => {
 
   const handleNumberSubmit = (num) => {
     setError("");
-    isNaN(num) ? setError("Please enter a number!") : setNumberOfDogs(num);
+    if (isNaN(num)) {
+      setError("Please enter a number!");
+    } else {
+      setNumberOfDogs(num);
+      setDogsFoundTotal(dogsFoundTotal + parseInt(num));
+    }
   };
 
   return (
     <div className="w-full max-w-[1200px] mx-auto">
       <Search emitNumberOfDogs={(num) => handleNumberSubmit(num)} />
       {error && <div className="text-red-400 text-sm text-center">{error}</div>}
-      <DogGallery dogs={dogsList} />
+      <DogGallery dogs={dogsList} dogsTotal={dogsFoundTotal} />
     </div>
   );
 };

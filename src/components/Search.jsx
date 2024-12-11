@@ -2,7 +2,6 @@ import { useState } from "react";
 
 const Search = ({ emitNumberOfDogs }) => {
   const [numberOfDogs, setNumberOfDogs] = useState("");
-
   const handleSubmit = () => {
     emitNumberOfDogs(numberOfDogs);
     setNumberOfDogs("");
