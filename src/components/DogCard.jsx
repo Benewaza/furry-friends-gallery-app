@@ -16,6 +16,7 @@ const DogCard = ({ dog }) => {
       <img
         className="w-full rounded-sm mb-2 h-[200px] object-cover object-top"
         src={dog}
+        alt={`Picture of ${dogBreed(dog)}`}
       />
       <span className="font-semibold text-sm">Breed: {dogBreed(dog)}</span>
     </div>
