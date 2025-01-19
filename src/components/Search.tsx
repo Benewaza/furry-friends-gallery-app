@@ -1,7 +1,12 @@
-import { useState } from "react";
+import React from "react";
+import { useState, FC } from "react";
 
-const Search = ({ emitNumberOfDogs }) => {
-  const [numberOfDogs, setNumberOfDogs] = useState("");
+interface SearchProps{
+  emitNumberOfDogs: (num: string) => void;
+}
+
+const Search: FC<SearchProps> = ({ emitNumberOfDogs }) => {
+  const [numberOfDogs, setNumberOfDogs] = useState<string>("");
   const handleSubmit = () => {
     emitNumberOfDogs(numberOfDogs);
     setNumberOfDogs("");

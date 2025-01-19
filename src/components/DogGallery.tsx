@@ -1,6 +1,13 @@
 import DogCard from "./DogCard";
+import React from "react";
+import { FC } from "react";
 
-const DogGallery = ({ dogs, dogsTotal }) => {
+interface GalleryProps {
+  dogs: string[];
+  dogsTotal: number;
+}
+
+const DogGallery: FC<GalleryProps> = ({ dogs, dogsTotal }) => {
   return (
     <section className="p-4">
       <div className="border-t-[1px] py-8">

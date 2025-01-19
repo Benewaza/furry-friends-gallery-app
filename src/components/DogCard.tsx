@@ -1,5 +1,12 @@
-const DogCard = ({ dog }) => {
-  const dogBreed = (dog) => {
+import { FC } from "react";
+import React from "react";
+
+interface DogCardProps {
+  dog: string
+}
+
+const DogCard: FC<DogCardProps> = ({ dog }) => {
+  const dogBreed: (dog: string) => string = dog => {
     // manipulate url string to retrieve breed information
     const breed = dog.substring(dog.indexOf("breeds")).split("/")[1];
 

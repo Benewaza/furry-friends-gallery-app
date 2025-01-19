@@ -1,12 +1,14 @@
+import React from "react";
 import DogGallery from "./components/DogGallery";
 import Search from "./components/Search";
 import { useEffect, useState } from "react";
 
+
 const App = () => {
-  const [numberOfDogs, setNumberOfDogs] = useState(8);
-  const [dogsFoundTotal, setDogsFoundTotal] = useState(8);
-  const [dogsList, setDogsList] = useState([]);
-  const [error, setError] = useState(null);
+  const [numberOfDogs, setNumberOfDogs] = useState<number>(8);
+  const [dogsFoundTotal, setDogsFoundTotal] = useState<number>(8);
+  const [dogsList, setDogsList] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchDogs = async () => {
@@ -25,19 +27,20 @@ const App = () => {
     fetchDogs();
   }, [numberOfDogs]);
 
-  const handleNumberSubmit = (num) => {
+  const handleNumberSubmit = (num: string) => {
     setError("");
-    if (isNaN(num)) {
+    if (isNaN(Number(num))) {
       setError("Please enter a number!");
     } else {
-      setNumberOfDogs(num);
-      setDogsFoundTotal(dogsFoundTotal + parseInt(num));
+      const parsedNum = Number(num);
+      setNumberOfDogs(parsedNum);
+      setDogsFoundTotal(dogsFoundTotal + parsedNum);
     }
   };
 
   return (
     <div className="w-full max-w-[1200px] mx-auto">
-      <Search emitNumberOfDogs={(num) => handleNumberSubmit(num)} />
+      <Search emitNumberOfDogs={(num: string) => handleNumberSubmit(num)} />
       {error && <div className="text-red-400 text-sm text-center">{error}</div>}
       <DogGallery dogs={dogsList} dogsTotal={dogsFoundTotal} />
     </div>
